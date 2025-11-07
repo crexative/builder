@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "minify": "npm run minify:html && npm run minify:css && npm run minify:js && npm run deploy:copy",
-    "minify:html": "html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true index.html -o index.min.html",
+    "minify:html": "html-minifier --collapse-whitespace --remove-comments --remove-redundant-attributes --remove-script-type-attributes --minify-css true --minify-js true index.html -o index.min.html",
     "minify:css": "cleancss -o styles.min.css styles.css",
     "minify:js": "terser app.js -o app.min.js -c -m",
     "deploy:copy": "mkdir -p docs && cp index.min.html docs/index.html && cp styles.min.css docs/styles.min.css && cp app.min.js docs/app.min.js",
