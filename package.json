@@ -4,11 +4,10 @@
   "description": "Sistema de construcción de diseño gráfico basado en atomic design con grilla modular de 50px.",
   "main": "app.js",
   "scripts": {
-    "minify": "npm run minify:html && npm run minify:css && npm run minify:js && npm run deploy:copy",
-    "minify:html": "html-minifier --collapse-whitespace --remove-comments --remove-redundant-attributes --remove-script-type-attributes --minify-css true --minify-js true index.html -o index.min.html",
-    "minify:css": "cleancss -o styles.min.css styles.css",
-    "minify:js": "terser app.js -o app.min.js -c -m",
-    "deploy:copy": "mkdir -p docs && cp index.min.html docs/index.html && cp styles.min.css docs/styles.min.css && cp app.min.js docs/app.min.js",
+    "minify": "mkdir -p docs && npm run minify:html && npm run minify:css && npm run minify:js",
+    "minify:html": "html-minifier --collapse-whitespace --remove-comments --remove-redundant-attributes --remove-script-type-attributes --minify-css true --minify-js true index.html -o docs/index.temp.html && sed 's/styles\\.css/styles.min.css/g; s/app\\.js/app.min.js/g' docs/index.temp.html > docs/index.html && rm docs/index.temp.html",
+    "minify:css": "cleancss -o docs/styles.min.css styles.css",
+    "minify:js": "terser app.js -o docs/app.min.js -c -m",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
